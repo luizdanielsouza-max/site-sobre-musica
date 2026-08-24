@@ -223,6 +223,474 @@ A programação contempla masterclasses de canto barroco e de instrumentos de é
 
 
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GARAGEM FORD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap&quot; rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-deep: oklch(12% 0.01 50);
+    --bg-surface: oklch(18% 0.008 50);
+    --accent: oklch(68% 0.18 55);
+    --accent-hover: oklch(74% 0.2 55);
+    --text-primary: oklch(92% 0.005 50);
+    --text-secondary: oklch(70% 0.005 50);
+    --text-muted: oklch(55% 0.005 50);
+    --border: oklch(28% 0.008 50);
+    --gradient-start: oklch(45% 0.2 270);
+    --gradient-end: oklch(65% 0.15 170);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    padding: 48px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        oklch(0% 0 0 / 0.05) 20px,
+        oklch(0% 0 0 / 0.05) 40px
+    );
+}
+
+header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0 2px 12px oklch(0% 0 0 / 0.3);
+}
+
+header p {
+    font-size: 1rem;
+    margin-top: 8px;
+    opacity: 0.85;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+nav {
+    background: var(--bg-surface);
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 16px 24px;
+    border-bottom: 2px solid var(--accent);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s var(--ease-out-quart), transform 0.2s var(--ease-out-quart);
+    padding: 4px 0;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease-out-quart);
+}
+
+nav a:hover {
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+main {
+    padding: 64px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+.section-header {
+    margin-bottom: 32px;
+}
+
+.section-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-size: 1.05rem;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.intro h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.intro p {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 60ch;
+    margin: 0 auto;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s var(--ease-out-quart), border-color 0.3s var(--ease-out-quart), box-shadow 0.3s var(--ease-out-quart);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 32px oklch(0% 0 0 / 0.4), 0 4px 12px oklch(68% 0.18 55 / 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s var(--ease-out-quart);
+}
+
+.card:hover img {
+    transform: scale(1.03);
+}
+
+.card-content {
+    padding: 24px;
+}
+
+.card-content h3 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.video-section {
+    text-align: center;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-caption {
+    margin-top: 16px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.video-caption strong {
+    color: var(--accent);
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.contato-item {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    padding: 32px 24px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: border-color 0.3s var(--ease-out-quart);
+}
+
+.contato-item:hover {
+    border-color: var(--accent);
+}
+
+.contato-item .icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.contato-item h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.contato-item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer {
+    background: var(--bg-surface);
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 2px solid var(--accent);
+}
+
+footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer .brand {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeUp 0.6s var(--ease-out-quart) both;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+@media (max-width: 640px) {
+    nav {
+        gap: 16px;
+        padding: 12px 16px;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+    }
+
+    main {
+        padding: 40px 16px;
+    }
+
+    section {
+        margin-bottom: 56px;
+    }
+
+    .galeria {
+        grid-template-columns: 1fr;
+    }
+
+    .card img {
+        height: 200px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Garagem Ford</h1>
+    <p>Somente Ford. Sempre Ford.</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#fotos">Fotos</a>
+    <a href="#videos">Vídeos</a>
+    <a href="#contato">Contato</a>
+</nav>
+
+<main>
+    <section id="home" class="intro">
+        <h2>Bem-vindo à Garagem</h2>
+        <p>Aqui é território Ford. Pick-ups clássicas, muscle cars lendários e tudo que tem o oval azul no capô.</p>
+    </section>
+
+    <section id="fotos">
+        <div class="section-header">
+            <h2>Galeria</h2>
+            <p>Os melhores da garagem</p>
+        </div>
+
+        <div class="galeria">
+            <div class="card animate-in">
+                <img src="https://i.pinimg.com/1200x/c8/f7/7c/c8f77c534bc2621136bcf900f5b86373.jpg&quot; alt="F250 Azul Tunada">
+                <div class="card-content">
+                    <h3>F250 Tunada</h3>
+                    <p>As pick-ups mais tops da garagem</p>
+                </div>
+            </div>
+
+            <div class="card animate-in">
+                <img src="https://www.estadao.com.br/resizer/v2/J3QQYCRVBVLLJM3O2OYFPM7OFM.jpg?quality=80&auth=8b8d67404784d0c3f8b53b4113816aab101a43ef87c52a834051bbf314f97ec9&width=1200&quot; alt="F100 Clássica">
+                <div class="card-content">
+                    <h3>F100 Top</h3>
+                    <p>Potência e estilo que não sai de moda</p>
+                </div>
+            </div>
+
+            <div class="card animate-in">
+                <img src="https://p2.trrsf.com/image/fget/cf/500/0/images.terra.com/2026/01/17/captura-de-tela-2026-01-16-222819-1iauwjk2193z5.png&quot; alt="Mustang GT 2026">
+                <div class="card-content">
+                    <h3>Mustang 2026</h3>
+                    <p>Não há limites para esse V8</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="video-section">
+        <div class="section-header">
+            <h2>Em Ação</h2>
+            <p>Assista e sinta o ronco do motor</p>
+        </div>
+
+        <div class="video-wrapper">
+            <iframe
+                src="https://www.youtube.com/embed/ENA5kP8V6pE&quot;
+                title="2026 Ford Mustang GT Review"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <p class="video-caption"><strong>🎬 Mustang GT 2026</strong> — Review completo: novas cores e pacotes</p>
+    </section>
+
+    <section id="contato">
+        <div class="section-header">
+            <h2>Contato</h2>
+            <p>Fale com a garagem</p>
+        </div>
+
+        <div class="contato-grid">
+            <div class="contato-item">
+                <div class="icon">📍</div>
+                <h3>Endereço</h3>
+                <p>Rua dos Motores, 250<br>Curitiba, PR</p>
+            </div>
+            <div class="contato-item">
+                <div class="icon">📞</div>
+                <h3>Telefone</h3>
+                <p>(41) 99999-707070</p>
+            </div>
+            <div class="contato-item">
+                <div class="icon">📧</div>
+                <h3>E-mail</h3>
+                <p>contato@garagemford.com</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Garagem Ford · Patrocínio <span class="brand">Zebra Acessórios</span></p>
+</footer>
+
+</body>
+</html>
+
+
+
 
 
 
